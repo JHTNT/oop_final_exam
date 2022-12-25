@@ -186,14 +186,16 @@ public class DataMgr {
     }
 
     public void addCatalog() {
+        System.out.println("Please_input_new_catalog:");
         String catalog = Main.scanner.next();
-        catalog = catalog.substring(0, 1).toUpperCase() + catalog.substring(1);
+        String c = catalog.substring(0, 1).toUpperCase() + catalog.substring(1);
         if (catalog.length() >= 12) {
             System.out.println("Error_catalog_to_long");
-        } else if (catalogs.contains(catalog)) {
+        } else if (catalogs.contains(c)) {
             System.out.println("Error_catalog_existed");
         } else {
-            catalogs.add(catalog);
+            catalogs.add(c);
+            saveCatalogs();
             System.out.println("Add_catalog_" + catalog + "_success");
         }
     }
