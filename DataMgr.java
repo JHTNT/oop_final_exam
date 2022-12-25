@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -177,6 +179,41 @@ public class DataMgr {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void addCatalog() {
+        String catalog = Main.scanner.next();
+        catalog = catalog.substring(0, 1).toUpperCase() + catalog.substring(1);
+        if (catalog.length() >= 12) {
+            System.out.println("Error_catalog_to_long");
+        } else if (catalogs.contains(catalog)) {
+            System.out.println("Error_catalog_existed");
+        } else {
+            catalogs.add(catalog);
+            System.out.println("Add_catalog_" + catalog + "_success");
+        }
+    }
+
+    public void saveCatalogs() {
+        String result = "";
+        for (String catalog : catalogs) {
+            result += catalog + "\n";
+        }
+        try {
+            FileWriter fw = new FileWriter(new File("catalog.txt"));
+            fw.write(result);
+            fw.close(); // close() will also execute flush()
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void showCatalog() {
+        System.out.println("[Catalog]");
+        for (String catalog : catalogs) {
+            System.out.println(catalog);
         }
     }
 }

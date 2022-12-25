@@ -89,6 +89,14 @@ public class Main {
                     dataMgr.showAll();
                     showSubMenu();
                     break;
+                case 8:
+                    dataMgr.addCatalog();
+                    showSubMenu();
+                    break;
+                case 9:
+                    dataMgr.showCatalog();
+                    showSubMenu();
+                    break;
                 case 14:
                     dataMgr.showRawData();
                     showSubMenu();
