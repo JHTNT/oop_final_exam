@@ -32,8 +32,39 @@ public class Main {
         "****************************************");
     }
 
+    public static void showSubMenu() {
+        System.out.println("[0].Go_back_to_main_menu [99].Exit_system");
+        int codes[] = {0, 99};
+        int cmd = getCmd(codes);
+        if (cmd == 99)
+            System.exit(0);
+    }
+
     public static void printCmdErrMsg() {
         System.out.println("Error_wrong_command\nPlease_enter_again:");
+    }
+
+    public static boolean isValidCmd(int codes[], int cmd) {
+        for (int c : codes) {
+            if (c == cmd)
+                return true;
+        }
+        return false;
+    }
+
+    public static int getCmd(int codes[]) {
+        int cmd;
+        while (true) {
+            try {
+                cmd = scanner.nextInt();
+                if (isValidCmd(codes, cmd))
+                    break;
+            } catch (Exception e) {
+                scanner.nextLine();
+            }
+            printCmdErrMsg();
+        }
+        return cmd;
     }
 
     public static void main(String[] args) {
@@ -56,6 +87,7 @@ public class Main {
             switch (cmd) {
                 case 1:
                     dataMgr.showAll();
+                    showSubMenu();
                     break;
                 case 99:
                     running = false;
