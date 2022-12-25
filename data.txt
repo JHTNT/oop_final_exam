@@ -1,0 +1,10 @@
+0007 Cake         16:00:00 18:24:53 100      Finish       C00426   Cooking      Bake_a_cake
+0001 Study        17:24:12 20:21:33 68       Unfinish     S44234   Reading      Prepare_for_test
+0005 Report       14:45:22 16:12:34 57       Doing        R83172   Reading      Write_reading_experience
+0008 Jump         09:10:05 09:30:00 100      Finish       J01664   Sports       Jump_rope
+0004 Run          09:47:21 10:30:00 100      Finish       R46798   Sports       Go_jogging
+0002 Buy          12:13:14 12:53:25 0        Unfinish     B95723   Buy          Grocery_shopping
+0009 Work         09:05:00 09:30:45 46       Doing        W02434   Work         Contact_customer
+0010 Dinner       19:00:46 19:30:51 100      Finish       D00217   Cooking      Cook_dinner
+0006 Novel        21:36:14 22:19:12 84       Doing        N55348   Reading      Read_a_novel
+0003 Breakfast    07:30:00 07:57:00 100      Finish       B13465   Cooking      Cook_breakfast
