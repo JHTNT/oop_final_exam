@@ -17,6 +17,7 @@ public class Config {
                 String option[] = line.split(" *: *"); // There may be spaces around `:`
                 config.put(option[0], option[1]);
             }
+            read.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

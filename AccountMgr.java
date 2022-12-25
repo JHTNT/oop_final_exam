@@ -16,6 +16,7 @@ public class AccountMgr {
                 String acc[] = line.split(" ");
                 accounts.put(acc[0], acc[1]);
             }
+            read.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
