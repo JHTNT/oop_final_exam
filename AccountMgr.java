@@ -13,8 +13,10 @@ public class AccountMgr {
             Scanner read = new Scanner(new File("account.txt"));
             while (read.hasNextLine()) {
                 String line = read.nextLine();
-                String acc[] = line.split(" ");
-                accounts.put(acc[0], acc[1]);
+                if (line.length() != 0) {
+                    String acc[] = line.split(" ");
+                    accounts.put(acc[0], acc[1]);
+                }
             }
             read.close();
         } catch (FileNotFoundException e) {

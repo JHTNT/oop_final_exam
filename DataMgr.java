@@ -151,18 +151,20 @@ public class DataMgr {
             while (read.hasNextLine()) {
                 String tokens[] = new String[8];
                 String line = read.nextLine();
-                StringTokenizer st = new StringTokenizer(line);
-                int id = Integer.parseInt(st.nextToken());
-                tokens[0] = st.nextToken(); // name
-                tokens[1] = st.nextToken(); // start
-                tokens[2] = st.nextToken(); // end
-                tokens[3] = st.nextToken(); // degree
-                tokens[4] = st.nextToken(); // state
-                tokens[5] = st.nextToken(); // number
-                tokens[6] = st.nextToken(); // catalog
-                tokens[7] = st.nextToken(); // work
-                jobs.add(new Job(id, tokens[0], tokens[1], tokens[2], tokens[3],
-                        tokens[4], tokens[5], tokens[6], tokens[7]));
+                if (line.length() != 0) {
+                    StringTokenizer st = new StringTokenizer(line);
+                    int id = Integer.parseInt(st.nextToken());
+                    tokens[0] = st.nextToken(); // name
+                    tokens[1] = st.nextToken(); // start
+                    tokens[2] = st.nextToken(); // end
+                    tokens[3] = st.nextToken(); // degree
+                    tokens[4] = st.nextToken(); // state
+                    tokens[5] = st.nextToken(); // number
+                    tokens[6] = st.nextToken(); // catalog
+                    tokens[7] = st.nextToken(); // work
+                    jobs.add(new Job(id, tokens[0], tokens[1], tokens[2], tokens[3],
+                            tokens[4], tokens[5], tokens[6], tokens[7]));
+                }
             }
             read.close();
         } catch (FileNotFoundException e) {
@@ -175,7 +177,8 @@ public class DataMgr {
             Scanner read = new Scanner(new File("catalog.txt"));
             while (read.hasNextLine()) {
                 String line = read.nextLine();
-                catalogs.add(line);
+                if (line.length() != 0)
+                    catalogs.add(line);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

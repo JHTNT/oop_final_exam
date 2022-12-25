@@ -14,8 +14,10 @@ public class Config {
             Scanner read = new Scanner(new File("config.txt"));
             while (read.hasNextLine()) {
                 String line = read.nextLine();
-                String option[] = line.split(" *: *"); // There may be spaces around `:`
-                config.put(option[0], option[1]);
+                if (line.length() != 0) {
+                    String option[] = line.split(" *: *"); // There may be spaces around `:`
+                    config.put(option[0], option[1]);
+                }
             }
             read.close();
         } catch (FileNotFoundException e) {
