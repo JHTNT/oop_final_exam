@@ -27,7 +27,7 @@ public class Config {
     }
 
     public boolean getBoolean(String str) {
-        if (config.get(str).equals("1")) {
+        if (config.get(str).equals("true")) {
             return true;
         }
         return false;
