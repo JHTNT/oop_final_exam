@@ -7,12 +7,12 @@ public class Main {
 
     public static void login() {
         for (int i = 0; i < 3; i++) {
-            System.out.print("Account:");
+            System.out.println("Account:");
             String acc = scanner.nextLine();
-            System.out.print("Password:");
+            System.out.println("Password:");
             String pw = scanner.nextLine();
             System.out.println("Verify_string:" + DataMgr.config.getString("verify_string"));
-            System.out.print("Input_Verify_string:");
+            System.out.println("Input_Verify_string:");
             String verify = scanner.nextLine();
 
             if (accMgr.login(acc, pw, verify)) {
