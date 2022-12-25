@@ -35,17 +35,30 @@ public class Main {
     public static void main(String[] args) {
         int cmd = -1;
         boolean running = true;
+        boolean cmdErr = false;
 
         login();
         while (running) {
-            printMenu();
-            cmd = scanner.nextInt();
+            if (!cmdErr) {
+                printMenu();
+            }
+            try {
+                cmd = scanner.nextInt();
+                cmdErr = false;
+            } catch (Exception e) { // if input not int
+                scanner.nextLine(); // clear buffer
+                cmd = -1;
+            }
             switch (cmd) {
                 case 1:
                     dataMgr.showAll();
                     break;
                 case 99:
                     running = false;
+                    break;
+                default:
+                    cmdErr = true;
+                    System.out.println("Error_wrong_command\nPlease_enter_again:");
                     break;
             }
         }
