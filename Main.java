@@ -32,6 +32,10 @@ public class Main {
         "****************************************");
     }
 
+    public static void printCmdErrMsg() {
+        System.out.println("Error_wrong_command\nPlease_enter_again:");
+    }
+
     public static void main(String[] args) {
         int cmd = -1;
         boolean running = true;
@@ -58,7 +62,7 @@ public class Main {
                     break;
                 default:
                     cmdErr = true;
-                    System.out.println("Error_wrong_command\nPlease_enter_again:");
+                    printCmdErrMsg();
                     break;
             }
         }
