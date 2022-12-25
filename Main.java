@@ -32,8 +32,12 @@ public class Main {
         "****************************************");
     }
 
-    public static void showSubMenu() {
+    public static void printSubmenu() {
         System.out.println("[0].Go_back_to_main_menu [99].Exit_system");
+    }
+
+    public static void showSubMenu() {
+        printSubmenu();
         int codes[] = {0, 99};
         int cmd = getCmd(codes);
         if (cmd == 99)
