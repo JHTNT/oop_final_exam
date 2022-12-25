@@ -18,6 +18,44 @@ public class DataMgr {
         loadJobs();
     }
 
+    public void showAll() {
+        boolean name = config.getBoolean("show_name");
+        boolean start = config.getBoolean("show_start");
+        boolean end = config.getBoolean("show_end");
+        boolean degree = config.getBoolean("show_degree");
+        boolean state = config.getBoolean("show_state");
+        boolean number = config.getBoolean("show_number");
+        boolean catalog = config.getBoolean("show_catalog");
+        boolean work = config.getBoolean("show_work");
+
+        System.out.println(getJobTitle(name, number, catalog, state, start, work, degree, end));
+        for (Job job : getSortedList()) {
+            job.print(name, start, end, degree, state, number, catalog, work);
+        }
+    }
+
+    public String getJobTitle(boolean name, boolean number, boolean catalog,
+            boolean state, boolean start, boolean work, boolean degree, boolean end) {
+        String title = Control.formatString("[ID]", 4);
+        if (name)
+            title += " " + Control.formatString("[Name]", 12);
+        if (start)
+            title += " " + Control.formatString("[Start]", 8);
+        if (end)
+            title += " " + Control.formatString("[End]", 8);
+        if (degree)
+            title += " " + Control.formatString("[Degree]", 8);
+        if (state)
+            title += " " + Control.formatString("[State]", 12);
+        if (number)
+            title += " " + Control.formatString("[Number]", 8);
+        if (catalog)
+            title += " " + Control.formatString("[Catalog]", 12);
+        if (work)
+            title += " [Work]";
+        return title;
+    }
+
     public ArrayList<Job> getSortedList() {
         ArrayList<Job> result = new ArrayList<>(jobs);
         Collections.sort(result, new Comparator<Job>() {

@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     private static final AccountMgr accMgr = new AccountMgr();
+    private static final DataMgr dataMgr = new DataMgr();
     public static final Scanner scanner = new Scanner(System.in);
 
     public static void login() {
@@ -40,6 +41,9 @@ public class Main {
             printMenu();
             cmd = scanner.nextInt();
             switch (cmd) {
+                case 1:
+                    dataMgr.showAll();
+                    break;
                 case 99:
                     running = false;
                     break;
