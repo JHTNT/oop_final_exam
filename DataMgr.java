@@ -34,6 +34,13 @@ public class DataMgr {
         }
     }
 
+    public void showRawData() {
+        System.out.println("[ID] [Name]       [Start]  [End]    [Degree] [State]      [Number] [Catalog]    [Work]");
+        for (Job job : jobs) {
+            job.print(true, true, true, true, true, true, true, true);
+        }
+    }
+
     public String getJobTitle(boolean name, boolean number, boolean catalog,
             boolean state, boolean start, boolean work, boolean degree, boolean end) {
         String title = Control.formatString("[ID]", 4);

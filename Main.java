@@ -89,6 +89,10 @@ public class Main {
                     dataMgr.showAll();
                     showSubMenu();
                     break;
+                case 14:
+                    dataMgr.showRawData();
+                    showSubMenu();
+                    break;
                 case 99:
                     running = false;
                     break;
