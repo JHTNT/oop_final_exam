@@ -1,0 +1,5 @@
+# Generate Java code 
+codeGen.py
+
+# Java class
+*.class
