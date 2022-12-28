@@ -224,4 +224,68 @@ public class DataMgr {
             System.out.println(catalog);
         }
     }
+    public boolean checkData(int field, String data) {
+        switch (field) {
+            case 1:
+                return idRegex(data);
+            case 2:
+                return nameRegex(data);
+            case 3:
+            case 4:
+                return timeRegex(data);
+            case 5:
+                return degreeRegex(data);
+            case 6:
+                return stateRegex(data);
+            case 7:
+                return numberRegex(data);
+            case 8:
+                return workRegex(data);
+            default:
+                return false;
+        }
+    }
+
+    public boolean idRegex(String id) {
+        return id.matches("^[0-9]{1,4}$");
+    }
+
+    public boolean nameRegex(String name) {
+        return !(name.matches("^[0-9]*$") || name == null || name.length() > 12);
+    }
+
+    public boolean timeRegex(String time) {
+        if (!time.matches("[0-9]{2}:[0-9]{2}:[0-9]{2}"))
+            return false;
+        String tokens[] = time.split(":");
+        int hour = Integer.parseInt(tokens[0]);
+        int min = Integer.parseInt(tokens[1]);
+        int sec = Integer.parseInt(tokens[1]);
+        if (!(hour > 0 && hour < 24))
+            return false;
+        else if (!(min > 0 && min < 60))
+            return false;
+        else if (!(sec > 0 && sec < 60))
+            return false;
+        return true;
+    }
+
+    public boolean degreeRegex(String degree) {
+        if (degree.matches("[0-9]{1, 3}"))
+            return false;
+        return Integer.parseInt(degree) >= 0 && Integer.parseInt(degree) <= 100;
+    }
+
+    public boolean stateRegex(String state) {
+        return (state.equals("Doing") || state.equals("Finish") ||
+                state.equals("Unfinish"));
+    }
+
+    public boolean numberRegex(String number) {
+        return number.matches("[A-Z]{1}[0-9]{5}");
+    }
+
+    public boolean workRegex(String work) {
+        return work.length() <= 26;
+    }
 }
