@@ -44,4 +44,29 @@ public class Job {
             title += " " + work;
         System.out.println(title);
     }
+
+    public boolean compareField(int field, String value) {
+        switch (field) {
+            case 1:
+                return this.id == Integer.parseInt(value);
+            case 2:
+                return this.name.equals(value);
+            case 3:
+                return this.start.equals(value);
+            case 4:
+                return this.end.equals(value);
+            case 5:
+                return this.degree.equals(value);
+            case 6:
+                return this.state.equals(value);
+            case 7:
+                return this.number.equals(value);
+            case 8:
+                return this.catalog.equals(value);
+            case 9:
+                return this.work.equals(value);
+            default:
+                return false;
+        }
+    }
 }

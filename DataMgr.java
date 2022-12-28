@@ -224,6 +224,16 @@ public class DataMgr {
             System.out.println(catalog);
         }
     }
+
+    public ArrayList<Job> searchJob(int field, String value) {
+        ArrayList<Job> result = new ArrayList<>();
+        for (Job job : jobs) {
+            if (job.compareField(field, value))
+                result.add(job);
+        }
+        return result;
+    }
+
     public boolean checkData(int field, String data) {
         switch (field) {
             case 1:
