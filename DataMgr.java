@@ -20,7 +20,7 @@ public class DataMgr {
         loadJobs();
     }
 
-    public void showAll() {
+    public void showJobs(ArrayList<Job> data) {
         boolean name = config.getBoolean("show_name");
         boolean start = config.getBoolean("show_start");
         boolean end = config.getBoolean("show_end");
@@ -31,9 +31,13 @@ public class DataMgr {
         boolean work = config.getBoolean("show_work");
 
         System.out.println(getJobTitle(name, number, catalog, state, start, work, degree, end));
-        for (Job job : getSortedList()) {
+        for (Job job : data) {
             job.print(name, start, end, degree, state, number, catalog, work);
         }
+    }
+
+    public void showAll() {
+        showJobs(getSortedList());
     }
 
     public void showRawData() {
