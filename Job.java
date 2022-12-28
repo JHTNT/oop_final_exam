@@ -25,21 +25,21 @@ public class Job {
     public void print(boolean show_name, boolean show_start, boolean show_end,
             boolean show_degree, boolean show_state, boolean show_number,
             boolean show_catalog, boolean show_work) {
-        String title = Control.formatInt(id, 4);
+        String title = String.format("%04d", id);
         if (show_name)
-            title += " " + Control.formatString(name, 12);
+            title += " " + String.format("%-12s", name);
         if (show_start)
-            title += " " + Control.formatString(start, 8);
+            title += " " + String.format("%-8s", start);
         if (show_end)
-            title += " " + Control.formatString(end, 8);
+            title += " " + String.format("%-8s", end);
         if (show_degree)
-            title += " " + Control.formatString(degree, 8);
+            title += " " + String.format("%-8s", degree);
         if (show_state)
-            title += " " + Control.formatString(state, 12);
+            title += " " + String.format("%-12s", state);
         if (show_number)
-            title += " " + Control.formatString(number, 8);
+            title += " " + String.format("%-8s", number);
         if (show_catalog)
-            title += " " + Control.formatString(catalog, 12);
+            title += " " + String.format("%-12s", catalog);
         if (show_work)
             title += " " + work;
         System.out.println(title);

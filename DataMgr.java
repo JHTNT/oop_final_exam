@@ -49,21 +49,21 @@ public class DataMgr {
 
     public String getJobTitle(boolean name, boolean number, boolean catalog,
             boolean state, boolean start, boolean work, boolean degree, boolean end) {
-        String title = Control.formatString("[ID]", 4);
+        String title = String.format("%-4s", "[ID]");
         if (name)
-            title += " " + Control.formatString("[Name]", 12);
+            title += " " + String.format("%-12s", "[Name]");
         if (start)
-            title += " " + Control.formatString("[Start]", 8);
+            title += " " + String.format("%-8s", "[Start]");
         if (end)
-            title += " " + Control.formatString("[End]", 8);
+            title += " " + String.format("%-8s", "[End]");
         if (degree)
-            title += " " + Control.formatString("[Degree]", 8);
+            title += " " + String.format("%-8s", "[Degree]");
         if (state)
-            title += " " + Control.formatString("[State]", 12);
+            title += " " + String.format("%-12s", "[State]");
         if (number)
-            title += " " + Control.formatString("[Number]", 8);
+            title += " " + String.format("%-8s", "[Number]");
         if (catalog)
-            title += " " + Control.formatString("[Catalog]", 12);
+            title += " " + String.format("%-12s", "[Catalog]");
         if (work)
             title += " [Work]";
         return title;
