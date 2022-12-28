@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -51,6 +52,10 @@ public class Main {
         System.out.println("Error_wrong_command\nPlease_enter_again:");
     }
 
+    public static void printDataErrMsg() {
+        System.out.println("Error_wrong_data\nPlease_input_again:");
+    }
+
     public static boolean isValidCmd(int codes[], int cmd) {
         for (int c : codes) {
             if (c == cmd)
@@ -85,6 +90,52 @@ public class Main {
         System.out.println();
     }
 
+    public static void search() {
+        int codes[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 99 };
+        boolean running = true;
+        String value;
+        while (running) {
+            System.out.println("Search by:");
+            printOptions(FIELDS);
+            printSubMenu();
+            int field = getCmd(codes);
+            if (field == 0)
+                return;
+            else if (field == 99)
+                System.exit(0);
+            System.out.println("Input_target:");
+            ArrayList<Job> result = new ArrayList<>();
+
+            while (true) {
+                value = scanner.nextLine();
+                if (!dataMgr.checkData(field, value))
+                    printDataErrMsg();
+                else
+                    break;
+            }
+
+            result = dataMgr.searchJob(field, value);
+            if (result.size() == 0) {
+                System.out.println("Error_no_result");
+            } else {
+                System.out.println("Search_result:");
+                dataMgr.showJobs(result);
+            }
+
+            while (true) {
+                System.out.print("[1].Restart_search ");
+                printSubMenu();
+                int cmd = getCmd(new int[] { 0, 1, 99 });
+                if (cmd == 0)
+                    return;
+                else if (cmd == 99)
+                    System.exit(0);
+                else if (cmd == 1)
+                    break;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int cmd = -1;
         boolean running = true;
@@ -106,6 +157,9 @@ public class Main {
                 case 1:
                     dataMgr.showAll();
                     showSubMenu();
+                    break;
+                case 4:
+                    search();
                     break;
                 case 8:
                     dataMgr.addCatalog();
