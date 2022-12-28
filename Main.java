@@ -5,6 +5,9 @@ public class Main {
     private static final DataMgr dataMgr = new DataMgr();
     public static final Scanner scanner = new Scanner(System.in);
 
+    private static final String FIELDS[] = { "ID", "Name", "Start", "End", "Degree",
+            "State", "Number", "Work" };
+
     public static void login() {
         for (int i = 0; i < 3; i++) {
             System.out.println("Account:");
@@ -71,6 +74,15 @@ public class Main {
             printCmdErrMsg();
         }
         return cmd;
+    }
+
+    public static void printOptions(String options[]) {
+        for (int i = 1; i <= options.length; i++) {
+            if (i != 1)
+                System.out.print(" ");
+            System.out.printf("[%d].%s", i, options[i - 1]);
+        }
+        System.out.println();
     }
 
     public static void main(String[] args) {
