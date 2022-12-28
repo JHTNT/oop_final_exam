@@ -61,6 +61,8 @@ public class Main {
         while (true) {
             try {
                 cmd = scanner.nextInt();
+                if (scanner.hasNextLine())
+                    scanner.nextLine(); // clear new line character
                 if (isValidCmd(codes, cmd))
                     break;
             } catch (Exception e) {
