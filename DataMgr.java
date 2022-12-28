@@ -212,7 +212,6 @@ public class DataMgr {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void showCatalog() {
