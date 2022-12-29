@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -34,5 +36,19 @@ public class Config {
             return true;
         }
         return false;
+    }
+
+    public void saveConfig() {
+        String result = "";
+        for (Map.Entry<String, String> entry : config.entrySet()) {
+            result += entry.getKey() + ": " + entry.getValue() + "\n";
+        }
+        try {
+            FileWriter fw = new FileWriter(new File("config.txt"));
+            fw.write(result);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
