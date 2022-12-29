@@ -77,6 +77,13 @@ public class Main {
         return cmd;
     }
 
+    public static int getCmd(int start, int end) {
+        int codes[] = new int[end - start];
+        for (int i = start; i < end; i++)
+            codes[i - start] = i;
+        return getCmd(codes);
+    }
+
     public static void printOptions(String options[]) {
         for (int i = 1; i <= options.length; i++) {
             if (i != 1)
