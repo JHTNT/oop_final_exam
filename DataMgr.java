@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.StringTokenizer;
-import java.util.TreeSet;
 
 public class DataMgr {
     public static Config config = new Config();
     public static ArrayList<Job> jobs = new ArrayList<>();
-    public static Set<String> catalogs = new TreeSet<>();
+    public ArrayList<String> catalogs = new ArrayList<>();
 
     public DataMgr() {
         loadCatalogs();
@@ -199,6 +197,7 @@ public class DataMgr {
             System.out.println("Error_catalog_existed");
         } else {
             catalogs.add(c);
+            Collections.sort(catalogs);
             saveCatalogs();
             System.out.println("Add_catalog_" + catalog + "_success");
         }
