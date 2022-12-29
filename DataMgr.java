@@ -269,18 +269,18 @@ public class DataMgr {
         String tokens[] = time.split(":");
         int hour = Integer.parseInt(tokens[0]);
         int min = Integer.parseInt(tokens[1]);
-        int sec = Integer.parseInt(tokens[1]);
-        if (!(hour > 0 && hour < 24))
+        int sec = Integer.parseInt(tokens[2]);
+        if (!(hour >= 0 && hour < 24))
             return false;
-        else if (!(min > 0 && min < 60))
+        else if (!(min >= 0 && min < 60))
             return false;
-        else if (!(sec > 0 && sec < 60))
+        else if (!(sec >= 0 && sec < 60))
             return false;
         return true;
     }
 
     public boolean degreeRegex(String degree) {
-        if (degree.matches("[0-9]{1, 3}"))
+        if (!degree.matches("[0-9]{1,3}"))
             return false;
         return Integer.parseInt(degree) >= 0 && Integer.parseInt(degree) <= 100;
     }
