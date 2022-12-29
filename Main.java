@@ -139,6 +139,74 @@ public class Main {
         }
     }
 
+    public static void addJob() {
+        String name, start, end, degree, state, number, work;
+        System.out.println("Name:");
+        while (true) {
+            name = scanner.nextLine();
+            if (dataMgr.nameRegex(name))
+                break;
+            else
+                printDataErrMsg();
+        }
+        System.out.println("Start:");
+        while (true) {
+            start = scanner.nextLine();
+            if (dataMgr.timeRegex(start))
+                break;
+            else
+                printDataErrMsg();
+        }
+        System.out.println("End:");
+        while (true) {
+            end = scanner.nextLine();
+            if (dataMgr.timeRegex(end))
+                break;
+            else
+                printDataErrMsg();
+        }
+        System.out.println("Degree:");
+        while (true) {
+            degree = scanner.nextLine();
+            if (dataMgr.degreeRegex(degree))
+                break;
+            else
+                printDataErrMsg();
+        }
+        System.out.println("State:");
+        while (true) {
+            state = scanner.nextLine();
+            if (dataMgr.stateRegex(state))
+                break;
+            else
+                printDataErrMsg();
+        }
+        System.out.println("Number:");
+        while (true) {
+            number = scanner.nextLine();
+            if (dataMgr.numberRegex(number))
+                break;
+            else
+                printDataErrMsg();
+        }
+        System.out.print("Catalogs:");
+        String options[] = dataMgr.catalogs.toArray(new String[dataMgr.catalogs.size()]);
+        printOptions(options);
+        System.out.println("Catalog:");
+        int cmd = getCmd(1, options.length + 1);
+        String catalog = options[cmd - 1];
+        System.out.println("Work:");
+        while (true) {
+            work = scanner.nextLine();
+            if (dataMgr.workRegex(name))
+                break;
+            else
+                printDataErrMsg();
+        }
+        dataMgr.addJob(name, start, end, degree, state, number, catalog, work);
+        System.out.println("Add_contact_success");
+    }
+
     public static void main(String[] args) {
         int cmd = -1;
         boolean running = true;
@@ -162,6 +230,10 @@ public class Main {
                     break;
                 case 4:
                     search();
+                    break;
+                case 7:
+                    addJob();
+                    showSubMenu();
                     break;
                 case 8:
                     dataMgr.addCatalog();

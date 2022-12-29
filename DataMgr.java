@@ -187,6 +187,35 @@ public class DataMgr {
         }
     }
 
+    public void addJob(String name, String start, String end, String degree,
+            String state, String number, String catalog, String work) {
+        int id = config.nextId();
+        jobs.add(new Job(id, name, start, end, degree, state, number, catalog, work));
+        saveJobs();
+    }
+
+    public void saveJobs() {
+        String result = "";
+        for (Job job : jobs) {
+            result += String.format("%04d", job.id) + " " +
+                    String.format("%-12s", job.name) + " " +
+                    String.format("%-8s", job.start) + " " +
+                    String.format("%-8s", job.end) + " " +
+                    String.format("%-8s", job.degree) + " " +
+                    String.format("%-12s", job.state) + " " +
+                    String.format("%-8s", job.number) + " " +
+                    String.format("%-12s", job.catalog) + " " +
+                    job.work + "\n";
+        }
+        try {
+            FileWriter fw = new FileWriter(new File("data.txt"));
+            fw.write(result);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void addCatalog() {
         System.out.println("Please_input_new_catalog:");
         String catalog = Main.scanner.next();
