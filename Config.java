@@ -38,6 +38,13 @@ public class Config {
         return false;
     }
 
+    public int nextId() {
+        int nextId = Integer.parseInt(config.get("used_last_id")) + 1;
+        config.put("used_last_id", String.format("%04d", nextId));
+        saveConfig();
+        return nextId;
+    }
+
     public void saveConfig() {
         String result = "";
         for (Map.Entry<String, String> entry : config.entrySet()) {
