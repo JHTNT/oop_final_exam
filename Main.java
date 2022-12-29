@@ -68,14 +68,10 @@ public class Main {
         int cmd;
         while (true) {
             try {
-                cmd = scanner.nextInt();
-                if (scanner.hasNextLine())
-                    scanner.nextLine(); // clear new line character
+                cmd = Integer.parseInt(scanner.nextLine());
                 if (isValidCmd(codes, cmd))
                     break;
-            } catch (Exception e) {
-                scanner.nextLine();
-            }
+            } catch (Exception e) {}
             printCmdErrMsg();
         }
         return cmd;
@@ -147,10 +143,9 @@ public class Main {
                 printMenu();
             }
             try {
-                cmd = scanner.nextInt();
+                cmd = Integer.parseInt(scanner.nextLine());
                 cmdErr = false;
             } catch (Exception e) { // if input not int
-                scanner.nextLine(); // clear buffer
                 cmd = -1;
             }
             switch (cmd) {
