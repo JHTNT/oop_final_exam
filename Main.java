@@ -8,6 +8,8 @@ public class Main {
 
     private static final String FIELDS[] = { "ID", "Name", "Start", "End", "Degree",
             "State", "Number", "Work" };
+    private static final String CMD_ERR_MSG = "Error_wrong_command\nPlease_enter_again:";
+    private static final String DATA_ERR_MSG = "Error_wrong_data\nPlease_input_again:";
 
     public static void login() {
         for (int i = 0; i < 3; i++) {
@@ -43,17 +45,9 @@ public class Main {
     public static void showSubMenu() {
         printSubMenu();
         int codes[] = { 0, 99 };
-        int cmd = getCmd(codes);
+        int cmd = getCmd(codes, CMD_ERR_MSG);
         if (cmd == 99)
             System.exit(0);
-    }
-
-    public static void printCmdErrMsg() {
-        System.out.println("Error_wrong_command\nPlease_enter_again:");
-    }
-
-    public static void printDataErrMsg() {
-        System.out.println("Error_wrong_data\nPlease_input_again:");
     }
 
     public static boolean isValidCmd(int codes[], int cmd) {
@@ -64,7 +58,7 @@ public class Main {
         return false;
     }
 
-    public static int getCmd(int codes[]) {
+    public static int getCmd(int codes[], String errMsg) {
         int cmd;
         while (true) {
             try {
@@ -72,16 +66,11 @@ public class Main {
                 if (isValidCmd(codes, cmd))
                     break;
             } catch (Exception e) {}
-            printCmdErrMsg();
+            System.out.println(errMsg);
         }
         return cmd;
     }
 
-    public static int getCmd(int start, int end) {
-        int codes[] = new int[end - start];
-        for (int i = start; i < end; i++)
-            codes[i - start] = i;
-        return getCmd(codes);
     }
 
     public static void printOptions(String options[]) {
@@ -101,7 +90,7 @@ public class Main {
             System.out.println("Search by:");
             printOptions(FIELDS);
             printSubMenu();
-            int field = getCmd(codes);
+            int field = getCmd(codes, CMD_ERR_MSG);
             if (field == 0)
                 return;
             else if (field == 99)
@@ -112,7 +101,7 @@ public class Main {
             while (true) {
                 value = scanner.nextLine();
                 if (!dataMgr.checkData(field, value))
-                    printDataErrMsg();
+                    System.out.println(DATA_ERR_MSG);
                 else
                     break;
             }
@@ -128,7 +117,7 @@ public class Main {
             while (true) {
                 System.out.print("[1].Restart_search ");
                 printSubMenu();
-                int cmd = getCmd(new int[] { 0, 1, 99 });
+                int cmd = getCmd(new int[] { 0, 1, 99 }, CMD_ERR_MSG);
                 if (cmd == 0)
                     return;
                 else if (cmd == 99)
@@ -147,7 +136,7 @@ public class Main {
             if (dataMgr.nameRegex(name))
                 break;
             else
-                printDataErrMsg();
+                System.out.println(DATA_ERR_MSG);
         }
         System.out.println("Start:");
         while (true) {
@@ -155,7 +144,7 @@ public class Main {
             if (dataMgr.timeRegex(start))
                 break;
             else
-                printDataErrMsg();
+                System.out.println(DATA_ERR_MSG);
         }
         System.out.println("End:");
         while (true) {
@@ -163,7 +152,7 @@ public class Main {
             if (dataMgr.timeRegex(end))
                 break;
             else
-                printDataErrMsg();
+                System.out.println(DATA_ERR_MSG);
         }
         System.out.println("Degree:");
         while (true) {
@@ -171,7 +160,7 @@ public class Main {
             if (dataMgr.degreeRegex(degree))
                 break;
             else
-                printDataErrMsg();
+                System.out.println(DATA_ERR_MSG);
         }
         System.out.println("State:");
         while (true) {
@@ -179,7 +168,7 @@ public class Main {
             if (dataMgr.stateRegex(state))
                 break;
             else
-                printDataErrMsg();
+                System.out.println(DATA_ERR_MSG);
         }
         System.out.println("Number:");
         while (true) {
@@ -187,13 +176,13 @@ public class Main {
             if (dataMgr.numberRegex(number))
                 break;
             else
-                printDataErrMsg();
+                System.out.println(DATA_ERR_MSG);
         }
         System.out.print("Catalogs:");
         String options[] = dataMgr.catalogs.toArray(new String[dataMgr.catalogs.size()]);
         printOptions(options);
         System.out.println("Catalog:");
-        int cmd = getCmd(1, options.length + 1);
+        int cmd = getCmd(codes, DATA_ERR_MSG);
         String catalog = options[cmd - 1];
         System.out.println("Work:");
         while (true) {
@@ -201,7 +190,7 @@ public class Main {
             if (dataMgr.workRegex(name))
                 break;
             else
-                printDataErrMsg();
+                System.out.println(DATA_ERR_MSG);
         }
         dataMgr.addJob(name, start, end, degree, state, number, catalog, work);
         System.out.println("Add_contact_success");
@@ -252,7 +241,7 @@ public class Main {
                     break;
                 default:
                     cmdErr = true;
-                    printCmdErrMsg();
+                    System.out.println(CMD_ERR_MSG);
                     break;
             }
         }
