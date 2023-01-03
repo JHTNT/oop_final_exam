@@ -187,7 +187,7 @@ public class Main {
         System.out.println("Work:");
         while (true) {
             work = scanner.nextLine();
-            if (dataMgr.workRegex(name))
+            if (dataMgr.workRegex(work))
                 break;
             else
                 System.out.println(DATA_ERR_MSG);
