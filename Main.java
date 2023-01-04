@@ -272,6 +272,11 @@ public class Main {
         }
         System.out.print("Catalogs:");
         String options[] = dataMgr.catalogs.toArray(new String[dataMgr.catalogs.size()]);
+        int codes[] = new int[options.length + 2];
+        codes[0] = 0;
+        codes[1] = 99;
+        for (int i = 1; i <= options.length; i++)
+            codes[i + 1] = i;
         printOptions(options);
         System.out.println("Catalog:");
         int cmd = getCmd(codes, DATA_ERR_MSG);
