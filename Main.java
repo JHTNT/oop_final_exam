@@ -156,6 +156,70 @@ public class Main {
         }
     }
 
+    public static void modifyJob() {
+        System.out.println("Input_ID_to_be_modified:");
+        String id = scanner.nextLine();
+        ArrayList<Job> result = dataMgr.searchJob(1, id);
+        Job oldJob = result.get(0);
+        System.out.println("Search_result:");
+        dataMgr.showJobs(result);
+        String name, start, end, degree, state, number, catalog, work;
+        System.out.println("New_name:");
+        name = scanner.nextLine();
+        if (name.equals(""))
+            name = oldJob.name;
+        System.out.println("New_start:");
+        start = scanner.nextLine();
+        if (start.equals(""))
+            start = oldJob.start;
+        System.out.println("New_end:");
+        end = scanner.nextLine();
+        if (end.equals(""))
+            end = oldJob.end;
+        System.out.println("New_degree:");
+        degree = scanner.nextLine();
+        if (degree.equals(""))
+            degree = oldJob.degree;
+        System.out.println("New_state:");
+        state = scanner.nextLine();
+        if (state.equals(""))
+            state = oldJob.state;
+        System.out.println("New_number:");
+        number = scanner.nextLine();
+        if (number.equals(""))
+            number = oldJob.number;
+        System.out.print("Catalogs:");
+        String options[] = dataMgr.catalogs.toArray(new String[dataMgr.catalogs.size()]);
+        printOptions(options);
+        System.out.println("New_catalog:");
+        String cmd = scanner.nextLine();
+        if (cmd.equals(""))
+            catalog = oldJob.catalog;
+        else
+            catalog = options[Integer.parseInt(cmd) - 1];
+        System.out.println("New_work:");
+        work = scanner.nextLine();
+        if (work.equals(""))
+            work = oldJob.work;
+        Job newJob = new Job(Integer.parseInt(id), name, start, end, degree,
+                state, number, catalog, work);
+        dataMgr.modifyJob(oldJob, newJob);
+        System.out.println("Modify_data_success");
+    }
+
+    public static void deleteJob() {
+        String id;
+        System.out.println("Input_ID_to_be_deleted:");
+        while (true) {
+            id = scanner.nextLine();
+            if (dataMgr.idRegex(id))
+                break;
+            else
+                System.out.println(DATA_ERR_MSG);
+        }
+        dataMgr.deleteJob(id);
+    }
+
     public static void addJob() {
         String name, start, end, degree, state, number, work;
         System.out.println("Name:");
@@ -251,6 +315,14 @@ public class Main {
                     break;
                 case 4:
                     search();
+                    break;
+                case 5:
+                    modifyJob();
+                    showSubMenu();
+                    break;
+                case 6:
+                    deleteJob();
+                    showSubMenu();
                     break;
                 case 7:
                     addJob();

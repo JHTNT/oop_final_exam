@@ -194,6 +194,23 @@ public class DataMgr {
         saveJobs();
     }
 
+    public void modifyJob(Job oldJob, Job newJob) {
+        jobs.remove(oldJob);
+        jobs.add(newJob);
+        saveJobs();
+    }
+
+    public void deleteJob(String id) {
+        ArrayList<Job> result = searchJob(1, id);
+        if (result.size() == 0) {
+            System.out.println("Error_no_such_data");
+        } else {
+            jobs.removeAll(result);
+            System.out.println("Delete_data_success");
+        }
+        saveJobs();
+    }
+
     public void saveJobs() {
         String result = "";
         for (Job job : jobs) {
