@@ -341,6 +341,22 @@ public class Main {
         printOptions(DataMgr.config.getShowField());
     }
 
+    public static void setShowPerPage() {
+        int page;
+        System.out.println("show_defalt_perpage:" + DataMgr.config.getShowPerPage());
+        System.out.println("new_show_defalt_perpage:");
+        while (true) {
+            try {
+                page = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (Exception e) {
+                System.out.println(DATA_ERR_MSG);
+            }
+        }
+        DataMgr.config.setShowPerPage(page);
+        System.out.println("show_defalt_perpage:" + DataMgr.config.getShowPerPage());
+    }
+
     public static void setShowOrder() {
         String order;
         System.out.println("show_sort_order:" + DataMgr.config.getSortOrder());
@@ -467,6 +483,10 @@ public class Main {
                     break;
                 case 10:
                     setShowField();
+                    showSubMenu();
+                    break;
+                case 11:
+                    setShowPerPage();
                     showSubMenu();
                     break;
                 case 12:

@@ -79,6 +79,15 @@ public class Config {
         saveConfig();
     }
 
+    public String getShowPerPage() {
+        return config.get("show_defalt_perpage");
+    }
+
+    public void setShowPerPage(int page) {
+        config.put("show_defalt_perpage", Integer.toString(page));
+        saveConfig();
+    }
+
     public String getSortOrder() {
         return config.get("show_sort_order");
     }
