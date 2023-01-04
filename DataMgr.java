@@ -34,6 +34,115 @@ public class DataMgr {
         }
     }
 
+    public void showPerPage(int page) {
+        boolean name = config.getBoolean("show_name");
+        boolean start = config.getBoolean("show_start");
+        boolean end = config.getBoolean("show_end");
+        boolean degree = config.getBoolean("show_degree");
+        boolean state = config.getBoolean("show_state");
+        boolean number = config.getBoolean("show_number");
+        boolean catalog = config.getBoolean("show_catalog");
+        boolean work = config.getBoolean("show_work");
+        int temp = page;
+        int i = temp - page;
+        int count = 1;
+        int size = 0; // amount of pages
+        String input;
+        ArrayList<Job> data = getSortedList();
+        if (jobs.size() % page != 0)
+            size = (jobs.size() / page) + 1;
+        else
+            size = jobs.size() / page;
+        while (true) {
+            if (count < size)
+                for (; i < temp; i++)
+                    data.get(i).print(name, start, end, degree, state, number, catalog, work);
+            else if (count == size || temp > jobs.size())
+                for (; i < jobs.size(); i++)
+                    data.get(i).print(name, start, end, degree, state, number, catalog, work);
+
+            if (count == 1 && count != size) {
+                System.out.println("[2].Next_page [0].Go_back_to_main_menu [99].Exit_system");
+                while (true) {
+                    input = Main.scanner.nextLine();
+                    if (input.equals("2")) {
+                        temp += page;
+                        i = temp - page;
+                        count++;
+                        break;
+                    } else if (input.equals("0")) {
+                        return;
+                    } else if (input.equals("99")) {
+                        System.exit(0);
+                    } else {
+                        System.out.println("Error_wrong_command\nPlease_enter_again:");
+                    }
+                }
+                continue;
+            }
+
+            if (count > 1 && count < size) {
+                System.out.println("[1].Last_page [2].Next_page [0].Go_back_to_main_menu [99].Exit_system");
+                while (true) {
+                    input = Main.scanner.nextLine();
+                    if (input.equals("1")) {
+                        temp -= page;
+                        i = temp - page;
+                        count--;
+                        break;
+                    } else if (input.equals("2")) {
+                        temp += page;
+                        i = temp - page;
+                        count++;
+                        break;
+                    } else if (input.equals("0")) {
+                        return;
+                    } else if (input.equals("99")) {
+                        System.exit(0);
+                    } else {
+                        System.out.println("Error_wrong_command\nPlease_enter_again:");
+                    }
+                }
+                continue;
+            }
+
+            if (count == size && count != 1) {
+                System.out.println("[1].Last_page [0].Go_back_to_main_menu [99].Exit_system");
+                while (true) {
+                    input = Main.scanner.nextLine();
+                    if (input.equals("1")) {
+                        temp -= page;
+                        i = temp - page;
+                        count--;
+                        break;
+                    } else if (input.equals("0")) {
+                        return;
+                    } else if (input.equals("99")) {
+                        System.exit(0);
+                    } else {
+                        System.out.println("Error_wrong_command\nPlease_enter_again:");
+                    }
+                }
+                continue;
+            }
+
+            if (count == size && count == 1) {
+                System.out.println("[0].Go_back_to_main_menu [99].Exit_system");
+                while (true) {
+                    input = Main.scanner.nextLine();
+                    if (input.equals("0")) {
+                        return;
+                    } else if (input.equals("99")) {
+                        System.exit(0);
+                    } else {
+                        System.out.println("Error_wrong_command\nPlease_enter_again:");
+                    }
+                }
+            }
+
+        }
+    }
+
     public void showAll() {
         showJobs(getSortedList());
     }

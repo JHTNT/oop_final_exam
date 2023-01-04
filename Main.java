@@ -71,6 +71,33 @@ public class Main {
         return cmd;
     }
 
+    public static void showPerPage() {
+        int page = 5;
+        String cmd;
+        System.out.println("Choose_show_per_page:");
+        System.out.println("[3].3_data_per_page [5].5_data_per_page [10].10_data_per_page");
+        System.out.print("[d].default ");
+        printSubMenu();
+        while (true) {
+            cmd = scanner.nextLine();
+            if (cmd.equals("0") || cmd.equals("3") || cmd.equals("5") || cmd.equals("10") ||
+                    cmd.equals("d") || cmd.equals("99"))
+                break;
+        }
+        if (cmd.equals("0")) {
+            return;
+        } else if (cmd.equals("3")) {
+            page = 3;
+        } else if (cmd.equals("5")) {
+            page = 5;
+        } else if (cmd.equals("10")) {
+            page = 10;
+        } else if (cmd.equals("d")) {
+            page = Integer.parseInt(DataMgr.config.getShowPerPage());
+        } else {
+            System.exit(0);
+        }
+        dataMgr.showPerPage(page);
     }
 
     public static void printOptions(String options[]) {
@@ -407,6 +434,9 @@ public class Main {
                 case 1:
                     dataMgr.showAll();
                     showSubMenu();
+                    break;
+                case 2:
+                    showPerPage();
                     break;
                 case 3:
                     showByCatalog();
