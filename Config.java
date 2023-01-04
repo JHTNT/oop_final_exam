@@ -87,4 +87,9 @@ public class Config {
         config.put("show_sort_order", order);
         saveConfig();
     }
+
+    public void setSortField(String field) {
+        config.put("show_sort_field", field);
+        saveConfig();
+    }
 }

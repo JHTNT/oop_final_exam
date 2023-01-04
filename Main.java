@@ -329,6 +329,16 @@ public class Main {
         System.out.println("show_sort_order:" + DataMgr.config.getSortOrder());
     }
 
+    public static void setSortField() {
+        String fields[] = { "ID", "Name", "Start", "End", "Degree",
+                "State", "Number", "Catalog", "Work" };
+        printOptions(fields);
+        printSubMenu();
+        int cmd = getCmd(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 99 }, CMD_ERR_MSG);
+        DataMgr.config.setSortField(fields[cmd - 1].toLowerCase());
+        System.out.println("Sorted_by:" + fields[cmd - 1]);
+    }
+
     public static void optimizeData() {
         System.out.println("Please_confirm_data_optimize_y_or_n:");
         while (true) {
@@ -431,6 +441,10 @@ public class Main {
                     break;
                 case 12:
                     setShowOrder();
+                    showSubMenu();
+                    break;
+                case 13:
+                    setSortField();
                     showSubMenu();
                     break;
                 case 14:
