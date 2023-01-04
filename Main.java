@@ -30,6 +30,19 @@ public class Main {
         System.exit(0);
     }
 
+    public static void logout() {
+        System.out.println("Please_confirm_to_logout_y_or_n:");
+        while (true) {
+            String cmd = scanner.nextLine();
+            if (cmd.equals("y"))
+                break;
+            else if (cmd.equals("n"))
+                return;
+            System.out.println("Error_input\nPlease_input_again:");
+        }
+        login();
+    }
+
     public static void printMenu() {
         System.out.println("****************************************\n" +
                 "1.Show_a 2.Show_p 3.Show_by_c 4.Search 5.Mod 6.Del 7.Add_job\n" +
@@ -520,6 +533,9 @@ public class Main {
                 case 19:
                     modifyAccount();
                     showSubMenu();
+                    break;
+                case 20:
+                    logout();
                     break;
                 case 99:
                     running = false;
