@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Config {
-    String diplayOptions[] = { "show_name", "show_start", "show_end", "show_degree",
+    String displayOptions[] = { "show_name", "show_start", "show_end", "show_degree",
             "show_state", "show_number", "show_catalog", "show_work" };
     Map<String, String> config = new HashMap<>();
 
