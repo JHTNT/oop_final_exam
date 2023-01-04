@@ -82,6 +82,34 @@ public class Main {
         System.out.println();
     }
 
+    public static void showByCatalog() {
+        int cmd;
+        String catalog;
+        String options[] = dataMgr.catalogs.toArray(new String[dataMgr.catalogs.size()]);
+        int codes[] = new int[options.length + 2];
+        codes[0] = 0;
+        codes[1] = 99;
+        for (int i = 1; i <= options.length; i++)
+            codes[i + 1] = i;
+
+        System.out.println("Catalogs:");
+        printOptions(options);
+        printSubMenu();
+        System.out.println("Input_catalog_to_show:");
+        while (true) {
+            cmd = getCmd(codes, DATA_ERR_MSG);
+            if (cmd == 0) {
+                return;
+            } else if (cmd == 99) {
+                System.exit(0);
+            } else {
+                catalog = options[cmd - 1];
+                break;
+            }
+        }
+        dataMgr.showJobs(dataMgr.searchJob(8, catalog));
+    }
+
     public static void search() {
         int codes[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 99 };
         boolean running = true;
@@ -215,6 +243,10 @@ public class Main {
             switch (cmd) {
                 case 1:
                     dataMgr.showAll();
+                    showSubMenu();
+                    break;
+                case 3:
+                    showByCatalog();
                     showSubMenu();
                     break;
                 case 4:
