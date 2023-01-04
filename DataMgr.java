@@ -301,6 +301,11 @@ public class DataMgr {
         }
     }
 
+    public void optimizeData() {
+        jobs = getSortedList();
+        saveJobs();
+    }
+
     public boolean idRegex(String id) {
         return id.matches("^[0-9]{1,4}$");
     }

@@ -288,6 +288,21 @@ public class Main {
         System.out.println("Add_contact_success");
     }
 
+    public static void optimizeData() {
+        System.out.println("Please_confirm_data_optimize_y_or_n:");
+        while (true) {
+            String s = scanner.nextLine();
+            if (s.equals("y")) {
+                dataMgr.optimizeData();
+                System.out.println("Data_optimize_success");
+                break;
+            } else if (s.equals("n")) {
+                System.out.println("Data_optimize_denied");
+                break;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int cmd = -1;
         boolean running = true;
@@ -338,6 +353,10 @@ public class Main {
                     break;
                 case 14:
                     dataMgr.showRawData();
+                    showSubMenu();
+                    break;
+                case 15:
+                    optimizeData();
                     showSubMenu();
                     break;
                 case 99:
