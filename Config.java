@@ -58,4 +58,24 @@ public class Config {
             e.printStackTrace();
         }
     }
+    
+    public String[] getShowField() {
+        String conf[] = new String[8];
+        for (int i = 0; i < 8; i++) {
+            String c = displayOptions[i];
+            conf[i] = c.substring(0, 1).toUpperCase() + c.substring(1);
+            if (config.get(c).equals("true"))
+                conf[i] += ":1";
+            else
+                conf[i] += ":0";
+        }
+        return conf;
+    }
+
+    public void setShowField(String newFields[]) {
+        for (int i = 0; i < 8; i++) {
+            config.put(displayOptions[i], newFields[i]);
+        }
+        saveConfig();
+    }
 }

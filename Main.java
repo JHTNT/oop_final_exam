@@ -288,6 +288,27 @@ public class Main {
         System.out.println("Add_contact_success");
     }
 
+    public static void setShowField() {
+        int codes[] = { 0, 1 };
+        String errMsg = "Input_error_plaese_input_0_or_1:";
+        String newFields[] = new String[8];
+        String fields[] = DataMgr.config.displayOptions;
+        printOptions(DataMgr.config.getShowField());
+        for (int i = 0; i < 8; i++) {
+            System.out.println("New_" + fields[i] + "(0/1):");
+            while (true) {
+                int cmd = getCmd(codes, errMsg);
+                if (cmd == 1)
+                    newFields[i] = "true";
+                else
+                    newFields[i] = "false";
+                break;
+            }
+        }
+        DataMgr.config.setShowField(newFields);
+        printOptions(DataMgr.config.getShowField());
+    }
+
     public static void optimizeData() {
         System.out.println("Please_confirm_data_optimize_y_or_n:");
         while (true) {
@@ -382,6 +403,10 @@ public class Main {
                     break;
                 case 9:
                     dataMgr.showCatalog();
+                    showSubMenu();
+                    break;
+                case 10:
+                    setShowField();
                     showSubMenu();
                     break;
                 case 14:
