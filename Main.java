@@ -303,6 +303,39 @@ public class Main {
         }
     }
 
+    public static void addAccount() {
+        String acc, pw;
+        System.out.println("New_account:");
+        acc = scanner.nextLine();
+        System.out.println("New_password:");
+        pw = scanner.nextLine();
+        accMgr.addAccount(acc, pw);
+    }
+
+    public static void removeAccount() {
+        String acc;
+        System.out.println("Delete_account:");
+        while (true) {
+            acc = scanner.nextLine();
+            if (accMgr.removeAccount(acc))
+                break;
+            System.out.println("No_account_please_try_again:");
+        }
+        System.out.println("Delete_account_success");
+    }
+
+    public static void modifyAccount() {
+        String oldAcc, newAcc, newPw;
+        System.out.println("Modify_account:");
+        oldAcc = scanner.nextLine();
+        System.out.println("New_account:");
+        newAcc = scanner.nextLine();
+        System.out.println("New_password:");
+        newPw = scanner.nextLine();
+        accMgr.modifyAccount(oldAcc, newAcc, newPw);
+        System.out.println("Modify_account_success");
+    }
+
     public static void main(String[] args) {
         int cmd = -1;
         boolean running = true;
@@ -357,6 +390,22 @@ public class Main {
                     break;
                 case 15:
                     optimizeData();
+                    showSubMenu();
+                    break;
+                case 16:
+                    accMgr.showAccount();
+                    showSubMenu();
+                    break;
+                case 17:
+                    addAccount();
+                    showSubMenu();
+                    break;
+                case 18:
+                    removeAccount();
+                    showSubMenu();
+                    break;
+                case 19:
+                    modifyAccount();
                     showSubMenu();
                     break;
                 case 99:
