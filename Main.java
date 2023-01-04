@@ -309,6 +309,21 @@ public class Main {
         printOptions(DataMgr.config.getShowField());
     }
 
+    public static void setShowOrder() {
+        String order;
+        System.out.println("show_sort_order:" + DataMgr.config.getSortOrder());
+        System.out.println("Please_input_new_sort_order:");
+        while (true) {
+            order = scanner.nextLine();
+            if (order.equals("asc") || order.equals("des")) {
+                DataMgr.config.setSortOrder(order);
+                break;
+            }
+            System.out.println("Input_error_plaese_input_asc_or_des:");
+        }
+        System.out.println("show_sort_order:" + DataMgr.config.getSortOrder());
+    }
+
     public static void optimizeData() {
         System.out.println("Please_confirm_data_optimize_y_or_n:");
         while (true) {
@@ -407,6 +422,10 @@ public class Main {
                     break;
                 case 10:
                     setShowField();
+                    showSubMenu();
+                    break;
+                case 12:
+                    setShowOrder();
                     showSubMenu();
                     break;
                 case 14:

@@ -78,4 +78,13 @@ public class Config {
         }
         saveConfig();
     }
+
+    public String getSortOrder() {
+        return config.get("show_sort_order");
+    }
+
+    public void setSortOrder(String order) {
+        config.put("show_sort_order", order);
+        saveConfig();
+    }
 }
