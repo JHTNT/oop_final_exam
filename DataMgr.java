@@ -255,7 +255,7 @@ public class DataMgr {
 
     public ArrayList<Job> searchJob(int field, String value) {
         ArrayList<Job> result = new ArrayList<>();
-        for (Job job : jobs) {
+        for (Job job : getSortedList()) {
             if (job.compareField(field, value))
                 result.add(job);
         }
