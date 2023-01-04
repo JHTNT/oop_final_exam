@@ -10,4 +10,4 @@ show_state: true
 show_number: true
 show_catalog: true
 show_work: true
-show_dafult_perpage: 5
+show_defalt_perpage: 5
